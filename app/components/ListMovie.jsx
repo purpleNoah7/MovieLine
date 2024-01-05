@@ -16,13 +16,14 @@ async function fetchMovies(page) {
   try {
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/popular?language=es-ES&page=${page}`,
+      { next: { revalidate: 60 } },
       options
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
-    console.log(data)
+    console.log(data);
     return data.results;
   } catch (error) {
     console.error("Error fetching movies:", error);
@@ -56,15 +57,14 @@ function ListMovie() {
     <div className="flex flex-col p-5 items-center">
       <div className="grid  grid-cols-1 gap-5 xl:grid-cols-7 sm:grid-cols-3">
         {movies.map((movie, index) => (
-            <CardMovie
-              link={movie.id}
-              key={movie.title}
-              index={index}
-              img={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-              movieName={movie.title}
-              years={movie.release_date}
-            />
-          
+          <CardMovie
+            link={movie.id}
+            key={movie.title}
+            index={index}
+            img={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+            movieName={movie.title}
+            years={movie.release_date}
+          />
         ))}
       </div>
       <div className="mt-4 gap-4 flex flex-row bottom-0 fixed sm:relative">

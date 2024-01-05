@@ -19,10 +19,10 @@ function CardMovie({ link, img, movieName, years, index }) {
         >
           <Link href={`/movies/${link}`}>
             <div className="flex flex-col w-[auto] ">
-              <div>
+              <div className="min-h-[300px]">
                 <img
                   src={img}
-                  className=" rounded-xl w-[300px]"
+                  className=" transition hover:opacity-80 hover:scale-105 rounded-xl w-[300px] "
                   alt={movieName}
                 />
               </div>
