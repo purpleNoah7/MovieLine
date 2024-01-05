@@ -16,7 +16,6 @@ async function fetchMovies(page) {
   try {
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/popular?language=es-ES&page=${page}`,
-      { next: { revalidate: 60 } },
       options
     );
     if (!response.ok) {
