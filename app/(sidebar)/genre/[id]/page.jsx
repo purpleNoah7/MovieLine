@@ -53,7 +53,7 @@ export default function GenrePage({ params }) {
   };
 
   return (
-    <div className="flex flex-col p-5 items-center">
+    <div className="flex flex-1 flex-col p-5 items-center justify-center">
       <div className="grid  grid-cols-1 gap-5 xl:grid-cols-7 sm:grid-cols-3">
         {movies.map((movie, index) => (
           <CardMovie
