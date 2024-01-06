@@ -83,7 +83,11 @@ export function SideBar() {
                     variants={variants}
                     transition={{ duration: 0.4, delay: index * 0.2 }}
                   >
-                    <Link key={index} href={`/genre/${cat.id}`}>
+                    <Link
+                      onClick={toggleMenu}
+                      key={index}
+                      href={`/genre/${cat.id}`}
+                    >
                       <li
                         className=" transition bg-neutral-800 hover:bg-red-500 font-semibold cursor-pointer  flex items-center  justify-center p-3 text-wrap rounded-full"
                         key={index}
