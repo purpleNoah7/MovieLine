@@ -1,3 +1,5 @@
+import ShowMovie from "@/app/components/ShowMovie";
+
 const options = {
   method: "GET",
   headers: {
@@ -17,7 +19,6 @@ async function fetchMovie({ id }) {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
-    console.log(data);
     return [data];
   } catch (error) {
     console.error("Error fetching movies:", error);
@@ -31,7 +32,14 @@ export default async function MoviePage({ params }) {
   return (
     <div>
       {movies.map((movie, index) => (
-        <h1 key={index}>{movie.title}</h1>
+        <ShowMovie
+          key={index}
+          popularity={movie.popularity}
+          title={movie.title}
+          overview={movie.overview}
+          website={movie.homepage}
+          movieUrl={movie.backdrop_path}
+        />
       ))}
     </div>
   );
