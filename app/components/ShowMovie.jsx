@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
-export default function Component({ title, movieUrl, website, overview, id }) {
+export default function Component({ title, movieUrl, website, overview, id,backdrop }) {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function Component({ title, movieUrl, website, overview, id }) {
         movieUrl,
         website,
         overview,
-        imageUrl: `https://image.tmdb.org/t/p/w500/${movieUrl}`,
+        imageUrl: `https://image.tmdb.org/t/p/w500/${backdrop}`,
       };
 
       const newFavorites = [...favorites, newFavorite];
