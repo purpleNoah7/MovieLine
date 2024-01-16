@@ -40,10 +40,10 @@ export function SideBar() {
 
   return (
     <div className="z-[1000]">
-      <div className="w-full  fixed sm:hidden pt-1 flex items-center mb-10 z-[1000] h-12 ">
+      <div className="w-full  fixed sm:hidden pt-1 flex items-center mb-10 z-[1100] h-12 ">
         <button
           onClick={toggleMenu}
-          className="bg-neutral-800 hover:bg-neutral-700 transition p-2 rounded-lg ml-5"
+          className="bg-neutral-800  hover:bg-neutral-700 transition p-2 rounded-lg ml-5"
         >
           {" "}
           <svg
