@@ -12,8 +12,7 @@ export default function Favorites() {
   }, []);
   const removeFromFavorites = (index) => {
     const updatedMoviesList = [...moviesList];
-    updatedMoviesList.splice(index, 1); // Elimina la película en el índice especificado
-    setList(updatedMoviesList);
+    updatedMoviesList.splice(index, 1);
     localStorage.setItem("favorites", JSON.stringify(updatedMoviesList));
   };
 
@@ -22,7 +21,7 @@ export default function Favorites() {
       {moviesList.length === 0 ? (
         <div className="w-full h-screen flex flex-col items-center justify-center">
           <h1 className=" text-6xl font-black uppercase text-red-500">
-            You don't have favorites
+            You dont have favorites
           </h1>
           <button
             className=" w-24 h-10 mt-2 hover:bg-red-950 transition rounded-lg bg-red-800"
@@ -34,10 +33,10 @@ export default function Favorites() {
       ) : (
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-3 xl:grid-cols-7 sm:grid-cols-2">
           {moviesList.map((movie, index) => (
-            <div className="group relative">
+            <div className="group relative " key={movie.index}>
               <CardMovie
                 link={movie.id}
-                key={movie.title}
+                key={movie.index}
                 index={index}
                 img={movie.imageUrl}
                 movieName={movie.title}
