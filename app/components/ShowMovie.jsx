@@ -1,8 +1,43 @@
 "use client";
-
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
-export default function Component({ title, movieUrl, website, overview }) {
+export default function Component({ title, movieUrl, website, overview, id }) {
+  const [favorites, setFavorites] = useState([]);
+
+  useEffect(() => {
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setFavorites(storedFavorites);
+  }, []);
+
+  const addToFavorites = () => {
+    if (!favorites.some((fav) => fav.id === id)) {
+      const newFavorite = {
+        id,
+        title,
+        movieUrl,
+        website,
+        overview,
+        imageUrl: `https://image.tmdb.org/t/p/w500/${movieUrl}`,
+      };
+
+      const newFavorites = [...favorites, newFavorite];
+      setFavorites(newFavorites);
+
+      // Guarda en el localStorage
+      localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    } else {
+      // Si ya está en favoritos, elimínalo
+      const updatedFavorites = favorites.filter((fav) => fav.id !== id);
+      setFavorites(updatedFavorites);
+
+      // Actualiza el localStorage
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    }
+  };
+
+  const isFavorite = favorites.some((fav) => fav.id === id);
+
   return (
     <section className="w-full h-screen min-h-full flex items-center justify-center py-12 md:py-24 lg:py-32 bg-gray-900 text-white">
       <motion.div
@@ -10,7 +45,27 @@ export default function Component({ title, movieUrl, website, overview }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
       >
-        <div className="container px-4 md:px-6">
+        <div className="relative container px-4 md:px-6">
+          <div
+            className="absolute top-0 left-5 hover:bg-blue-700 transition cursor-pointer -translate-y-10 rounded bg-blue-500 p-3 inline-block"
+            onClick={() => window.history.back()}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="icon icon-tabler icon-tabler-arrow-back"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              strokeWidth="2"
+              stroke="currentColor"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M9 11l-4 4l4 4m-4 -4h11a4 4 0 0 0 0 -8h-1" />
+            </svg>
+          </div>
           <div className="grid gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_550px]">
             <img
               alt={title}
@@ -36,9 +91,22 @@ export default function Component({ title, movieUrl, website, overview }) {
                 <StarIcon className="h-6 w-6 text-yellow-400" />
                 <span className="text-lg">4.5/5</span>
               </div>
-              <button className="mt-4 px-6 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors duration-200">
-                Add to Favorites
-              </button>
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  className={`mt-4 px-6 py-2 ${
+                    isFavorite ? "bg-red-700" : "bg-red-500"
+                  } text-white rounded-md hover:bg-red-600 transition-colors duration-200`}
+                  onClick={addToFavorites}
+                >
+                  {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+                </button>
+                <button
+                  disabled
+                  className="mt-4 px-6 py-2 cursor-not-allowed bg-blue-900 opacity-70 text-white rounded-md transition-colors duration-200"
+                >
+                  Watch
+                </button>
+              </div>
             </div>
           </div>
         </div>

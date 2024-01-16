@@ -40,7 +40,7 @@ export function SideBar() {
 
   return (
     <div>
-      <div className="w-full fixed  sm:hidden pt-1 flex items-center mb-10 z-10 h-12  bg-black/50">
+      <div className="w-full fixed sm:hidden pt-1 flex items-center mb-10 z-10 h-12  bg-black/50">
         <button
           onClick={toggleMenu}
           className="bg-neutral-800 hover:bg-neutral-700 transition p-2 rounded-lg ml-5"
@@ -64,14 +64,20 @@ export function SideBar() {
         </button>
       </div>
       <div
-        className={`fixed sm:sticky  top-0 bottom-0 left-0 bg-neutral-900 min-w-[315px]  sm:flex flex-col  h-screen p-4 gap-4 ${
+        className={`fixed sm:sticky  top-0 bottom-0 left-0 bg-neutral-900 min-w-[315px]  sm:flex flex-col  min-h-screen h-full p-4 gap-4 ${
           menuOpen ? "flex w-full " : "hidden"
         } `}
       >
         <h1 className="text-center font-bold uppercase text-2xl mb-3">
           Géneros
         </h1>
-        <div className="">
+        <div className="flex flex-col gap-3">
+          <Link
+            className="transition bg-red-500 hover:opacity-60 font-semibold cursor-pointer  flex items-center  justify-center p-3 text-wrap rounded-full"
+            href={"/favorites"}
+          >
+            Favorites
+          </Link>
           <ul className="grid grid-cols-2 gap-5">
             <MotionConfig>
               <AnimatePresence>

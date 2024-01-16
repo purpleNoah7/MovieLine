@@ -19,7 +19,7 @@ function CardMovie({ link, img, movieName, years, index }) {
         >
           <Link href={`/movies/${link}`}>
             <div className="flex flex-col w-[auto] gap-2 items-center justify-center ">
-              <div className=" items-center " >
+              <div className="basis-1 items-center ">
                 <img
                   src={img}
                   className=" transition hover:opacity-80 hover:scale-105 rounded-xl w-[300px] "

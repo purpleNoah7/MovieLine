@@ -39,6 +39,7 @@ export default async function MoviePage({ params }) {
           overview={movie.overview}
           website={movie.homepage}
           movieUrl={movie.backdrop_path}
+          id={movie.id}
         />
       ))}
     </div>
