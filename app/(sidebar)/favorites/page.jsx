@@ -14,8 +14,8 @@ export default function Favorites() {
     const updatedMoviesList = [...moviesList];
     updatedMoviesList.splice(index, 1);
     localStorage.setItem("favorites", JSON.stringify(updatedMoviesList));
+    setList(updatedMoviesList); // Actualiza el estado del componente
   };
-
   return (
     <div className="flex flex-1 flex-col p-5 items-center gap-5">
       {moviesList.length === 0 ? (
@@ -33,10 +33,9 @@ export default function Favorites() {
       ) : (
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-3 xl:grid-cols-7 sm:grid-cols-2">
           {moviesList.map((movie, index) => (
-            <div className="group relative " key={movie.index}>
+            <div className="group relative " key={movie.id}>
               <CardMovie
                 link={movie.id}
-                key={movie.index}
                 index={index}
                 img={movie.imageUrl}
                 movieName={movie.title}

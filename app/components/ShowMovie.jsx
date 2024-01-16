@@ -18,7 +18,7 @@ export default function Component({ title, movieUrl, website, overview, id,backd
         movieUrl,
         website,
         overview,
-        imageUrl: `https://image.tmdb.org/t/p/w500/${backdrop}`,
+        imageUrl: `https://image.tmdb.org/t/p/w500/${movieUrl}`,
       };
 
       const newFavorites = [...favorites, newFavorite];
@@ -71,7 +71,7 @@ export default function Component({ title, movieUrl, website, overview, id,backd
               alt={title}
               className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
               height={550}
-              src={`https://image.tmdb.org/t/p/w500/${movieUrl}`}
+              src={`https://image.tmdb.org/t/p/w500/${backdrop}`}
               width={310}
             />
             <div className="flex flex-col justify-center space-y-4">
