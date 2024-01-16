@@ -39,8 +39,8 @@ export function SideBar() {
   }
 
   return (
-    <div>
-      <div className="w-full fixed sm:hidden pt-1 flex items-center mb-10 z-10 h-12  bg-black/50">
+    <div className="z-[1000]">
+      <div className="w-full  fixed sm:hidden pt-1 flex items-center mb-10 z-[1000] h-12 ">
         <button
           onClick={toggleMenu}
           className="bg-neutral-800 hover:bg-neutral-700 transition p-2 rounded-lg ml-5"
@@ -64,14 +64,14 @@ export function SideBar() {
         </button>
       </div>
       <div
-        className={`fixed sm:sticky  top-0 bottom-0 left-0 bg-neutral-900 min-w-[315px]  sm:flex flex-col  min-h-screen h-full p-4 gap-4 ${
+        className={`fixed sm:sticky  top-0 bottom-0 z-[1000] left-0 bg-neutral-900 min-w-[315px]  sm:flex flex-col  min-h-screen h-full p-4 gap-4 ${
           menuOpen ? "flex w-full " : "hidden"
         } `}
       >
         <h1 className="text-center font-bold uppercase text-2xl mb-3">
           Géneros
         </h1>
-        <div className="flex flex-col gap-3">
+        <div className="flex z-[1000] flex-col gap-3">
           <Link
             className="transition bg-red-500 hover:opacity-60 font-semibold cursor-pointer  flex items-center  justify-center p-3 text-wrap rounded-full"
             href={"/favorites"}
@@ -102,9 +102,9 @@ export function SideBar() {
               </AnimatePresence>
             </MotionConfig>
           </ul>
-          <div className="flex items-center justify-center mt-6 p-10">
+          <div className="flex items-center justify-center">
             <Link
-              className=" transition bg-neutral-800 hover:bg-red-500 font-semibold cursor-pointer  flex items-center  justify-center h-10 w-40 text-wrap rounded-full"
+              className=" transition bg-neutral-800 hover:bg-red-500 font-semibold cursor-pointer  flex items-center  justify-center h-10 w-full text-wrap rounded-full"
               href={"/search"}
             >
               Buscar
